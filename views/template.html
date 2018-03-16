@@ -10,61 +10,32 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript" src="/scripts/client.js"></script>
 
-    <title></title>
-
-    {% block header %}
-      <!-- This is the default content -->
-    {% endblock %}
+    {% block header %}{% endblock %}
   </head>
   <body>
     <!-- navigation bar -->
     <div class="navigation">
       <div class="navigation-logo">
-        <a class="navbar-brand-span-title" href="#">VoteMania</a>
+        <a class="navbar-brand-span-title" href="/">VoteMania</a>
       </div>
       <div class="navigation-links">
         <ul>
           <li>
-            <a href="#">Home</a>
+            <a href="/polls">Polls</a>
           </li>
           <li>
-            <a href="#">Login</a>
+            <a href="/register">Sign-up</a>
           </li>
           <li>
-            <a href="#">Sign-up</a>
+            <a href="/login">Login</a>
+          </li>
+          <li>
+            <a href="/">Home</a>
           </li>
         </ul>
       </div>
     </div>
-    <!-- front page banner -->
-    <div class="front-page-cover">
-      <div class="front-page-cover-banner">
-        <h1>VoteMania</h1>
-        <h3>Platform to create and share voting polls.</h3>
-        <button type="button" name="sign-up">Sign-up</button>
-      </div>
-    </div>
-    <!-- info column -->
-    <div class="info-row">
-      <div class="info-row-column">
-        <img class="info-row-column-img" src="/assets/images/start.png" alt="start.png">
-        <h4>Live Results</h4>
-        <p>Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem</p>
-      </div>
-      <div class="info-row-column">
-        <img class="info-row-column-img" src="/assets/images/Earth-512.png" alt="start.png">
-        <h4>Works Everywhere</h4>
-        <p>Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem</p>
-      </div>
-      <div class="info-row-column">
-        <img class="info-row-column-img" src="/assets/images/share-flat.png" alt="start.png">
-        <h4>Social Integration</h4>
-        <p>Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem</p>
-      </div>
-    </div>
 
-    {% block content %}
-      <!-- This is more content -->
-    {% endblock %}
+    {% block content %}{% endblock %}
   </body>
 </html>
