@@ -1,0 +1,40 @@
+.navigation {
+  height: 50px;
+}
+.navigation-logo {
+  float: left;
+  padding: 5px 15px;
+}
+.navbar-brand-span-title {
+  font-size: 1.5em;
+  font-family: 'Anton', sans-serif;
+}
+.navigation-links {
+  float: right;
+}
+.navigation-links ul li {
+  display: inline-block;
+  padding: 10px 15px;
+}
+.front-page-cover {
+  background-color: #4ECDC4;
+}
+.front-page-cover-banner {
+  width: 50%;
+  padding: 75px;
+  margin: 0 auto;
+}
+.info-row {
+  display: flex;
+  justify-content: space-around;
+}
+.info-row-column {
+  display: inline-block;
+  width: 300px;
+  padding: 30px;
+  text-align: center;
+}
+.info-row-column-img {
+  width: 75px;
+  height: 75px;
+}
