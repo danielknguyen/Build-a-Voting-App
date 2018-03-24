@@ -11,8 +11,10 @@
     <div class="front-page-cover-banner">
       <h1>VoteMania</h1>
       <h3>Platform to create and share voting polls.</h3>
-      <a href="/login" class="btn btn-primary" name="sign-up">Login</a>
-      <a href="/register" class="btn btn-secondary" name="sign-up">Sign-up</a>
+      {% if not user %}
+        <a href="/login" class="btn btn-primary" name="sign-up">Login</a>
+        <a href="/register" class="btn btn-secondary" name="sign-up">Sign-up</a>
+      {% endif %}
     </div>
   </div>
   <!-- info column -->
