@@ -1,17 +1,18 @@
 var express = require('express'),
-    // run express server
-    app = express(),
     // store sensitive information with dotenv
     dotenv = require('dotenv').config(),
     // parse messages and display as JSON
     bodyParser = require('body-parser'),
     // templating engine
     engines = require('consolidate'),
-    // require object data modeling
-    mongoose = require('mongoose');
+    app = express(),
+    flash = require('connect-flash'),
+    morgan = require('morgan'),
+    cookieParser = require('cookie-parser'),
+    session = require('express-session');
 
 // setup app configuration
-var appConfig = function(app) {
+var appConfig = function() {
   // serve static files, assets, css, javascript in public directory
   app.use(express.static(__dirname + '/public'));
   // set directory of views templates
@@ -21,11 +22,32 @@ var appConfig = function(app) {
   // convert data to be easily transferred through the web
   app.use(bodyParser.urlencoded({ extended: true}));
   // parse/analyze incoming data as json object
-  app.use(bodyParser.json());
-}(app);
+  app.use(bodyParser.json()); // gets information from forms
+  app.use(morgan('dev')); // log every request in console
+  app.use(cookieParser(process.env.SESSION_KEY)); // read cookies needed for auth
 
-var routes = require('./routes/routes.js')(app);
+  app.use(session({
+    secret: process.env.SESSION_KEY,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      secure: false,
+      maxAge: 300000
+     }
+  }));
 
+  app.use(flash()); // use connect-flash for flash messages stored in session
+
+  // set success and error variables on every request
+  app.use(function(req, res, next) {
+    res.locals.success = req.flash('success');
+    res.locals.error = req.flash('error');
+    next();
+  });
+
+}();
+
+var routes = require('./routes/routes.js')(app, flash);
 // set up heroku env PORT || local
 var port = process.env.PORT || 27017;
 // listen for connection at port
