@@ -10,9 +10,19 @@
   <div class="front-page-cover">
     <div class="front-page-cover-banner">
       <h1>VoteMania</h1>
-      <h3>Select a poll to see results and vote, or sign in to make a new poll.</h3>
-      <a href="/login" class="btn btn-primary" name="sign-up">Login</a>
-      <a href="/register" class="btn btn-secondary" name="sign-up">Sign-up</a>
+      <h3>
+        {% if not user %}
+          Select a poll to see results and vote, or sign in to make a new poll.
+        {% else %}
+          Select a poll to see results and vote, or create a new poll.
+        {% endif %}
+      </h3>
+      {% if not user %}
+        <a href="/login" class="btn btn-primary" name="sign-up">Login</a>
+        <a href="/register" class="btn btn-secondary" name="sign-up">Sign-up</a>
+      {% else %}
+        <a href="" class="btn btn-secondary" name="my_polls">My Polls</a>
+      {% endif %}
     </div>
   </div>
 

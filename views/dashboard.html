@@ -1,0 +1,17 @@
+{% extends "template.html" %}
+
+{% block header %}
+  <title>VoteMania:Dashboard</title>
+{% endblock %}
+
+{% block content %}
+<!-- dashboard-->
+<div class="front-page-cover">
+  <div class="front-page-cover-banner">
+    <h1>Dashboard</h1>
+    <h3>Hello {{ user }}, what would you like to do today?</h3>
+    <a href="" class="btn btn-primary" name="new_polls">New Poll</a>
+    <a href="" class="btn btn-secondary" name="my_polls">My Polls</a>
+  </div>
+</div>
+{% endblock %}
