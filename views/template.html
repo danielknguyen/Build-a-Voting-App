@@ -14,28 +14,54 @@
   </head>
   <body>
     <!-- navigation bar -->
-    <div class="navigation">
-      <div class="navigation-logo">
-        <a class="navbar-brand-span-title" href="/">VoteMania</a>
+    {% if user %}
+      <div class="navigation">
+        <div class="navigation-logo">
+          <a class="navbar-brand-span-title" href="/">VoteMania</a>
+        </div>
+        <div class="dropdown">
+          <div class="dropbtn"><i class="fa fa-user-circle"></i> {{ user }}</div>
+          <div id="myDropdown" class="dropdown-content">
+            <a href="/dashboard">Dashboard</a>
+            <a href="/polls">Public Polls</a>
+            <a href="/settings">Settings</a>
+            <a href="/logout">Logout</a>
+          </div>
+        </div>
       </div>
-      <div class="navigation-links">
-        <ul>
-          <li>
-            <a href="/polls">Polls</a>
-          </li>
-          <li>
-            <a href="/register">Sign-up</a>
-          </li>
-          <li>
-            <a href="/login">Login</a>
-          </li>
-          <li>
-            <a href="/">Home</a>
-          </li>
-        </ul>
+    {% else %}
+      <div class="navigation">
+        <div class="navigation-logo">
+          <a class="navbar-brand-span-title" href="/">VoteMania</a>
+        </div>
+        <div class="navigation-links">
+          <ul>
+            <li>
+              <a href="/polls">Public Polls</a>
+            </li>
+            <li>
+              <a href="/register">Sign-up</a>
+            </li>
+            <li>
+              <a href="/login">Login</a>
+            </li>
+            <li>
+              <a href="/">Home</a>
+            </li>
+          </ul>
+        </div>
       </div>
-    </div>
+    {% endif %}
 
-    {% block content %}{% endblock %}
+    <!-- if error object has any messages -->
+    {% if error.length > 0 %}
+      <div class="flashMessage alert alert-danger" role="alert">{{ error }}</div>
+    <!-- if success object has any messages -->
+    {% elif success.length > 0 %}
+      <div class="flashMessage alert alert-success" role="alert">{{ success }}</div>
+    {% endif %}
+
+    {% block content %}
+    {% endblock %}
   </body>
 </html>
