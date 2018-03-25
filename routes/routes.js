@@ -1,10 +1,11 @@
 var routes = function(app, flash) {
 
   var util = require('util');
-
-  var User = require('../models/userSchema.js');
-
   var bcrypt = require('bcrypt-nodejs');
+
+  // schemas
+  var User = require('../models/userSchema.js');
+  var Poll = require('../models/pollSchema.js');
 
   app.get('/', function(req, res) {
     // check local object
@@ -47,14 +48,12 @@ var routes = function(app, flash) {
 
 	app.post('/register', function(req, res) {
 
-    var newUser;
+    var newUser = User();
     var fname = req.body.fname.toLowerCase();
     var lname = req.body.lname.toLowerCase();
     var email = req.body.email.toLowerCase();
     var password = req.body.password;
     var verifyPassword = req.body.verifyPassword;
-
-    newUser = User();
 
     User.findOne({ 'email': email }, function(err, user) {
       // log error if unable to query from database
@@ -163,11 +162,94 @@ var routes = function(app, flash) {
 
   app.get('/dashboard', isLoggedIn, function(req, res) {
 
-    res.render('dashboard.html', {
-        user : titleCase(req.session.user.fname), // get the user out of session and pass to template
-        error_message: req.flash('error'),
-        success_message: req.flash('success')
+    var pollsArray;
+
+    Poll.find({ 'user_id': req.session.user.userId }, function(err, polls) {
+
+      if (err) {
+        throw err;
+      } else if (!polls) {
+        pollsArray = [];
+      } else {
+        pollsArray = polls;
+        res.render('dashboard.html', {
+            user : titleCase(req.session.user.fname), // get the user out of session and pass to template
+            polls: pollsArray,
+            error_message: req.flash('error'),
+            success_message: req.flash('success')
+        });
+      };
     });
+
+  });
+
+  app.post('/dashboard', isLoggedIn, function(req, res) {
+
+    var newPoll = new Poll();
+    // query form poll name
+    var pollName = req.body.nameYourPoll.toLowerCase();
+    // query form options in the form on an array
+    var formOptions = req.body.options;
+    var options = [];
+
+    // loop through form options and make all options lowercase
+    // push new values to options array
+    for (var i = 0; i < formOptions.length; i++) {
+      options.push(formOptions[i].toLowerCase());
+    };
+
+    // check if poll already exists in db
+    Poll.findOne({ 'poll_name': pollName }, function(err, poll) {
+      // throw err if query failed
+      if (err) {
+        throw err;
+        // if poll exists redirect to dashboard and display error
+      } else if (poll) {
+        req.flash('error', 'Poll already exists');
+        res.redirect('/dashboard');
+        // add new poll into db if poll does not exist
+      } else {
+        newPoll.user_id = req.session.user.userId;
+        newPoll.poll_name = pollName;
+        newPoll.options = options;
+        newPoll.created_at = Date();
+
+        newPoll.save(function(err, poll) {
+          if (err) {
+            throw err;
+          } else {
+            console.log(poll);
+            req.flash('success', 'Poll was successfully added');
+            res.redirect('/dashboard');
+          }
+        });
+      }
+    });
+
+  });
+
+  app.get('/polls/vote/:pollId', function(req, res) {
+
+    var user = (req.session.user) ? titleCase(req.session.user.fname) : undefined;
+    var pollId = req.params.pollId;
+    // console.log(pollId);
+
+    Poll.findOne({ "_id": pollId }, function(err, poll) {
+
+      if (err) {
+        throw err;
+      };
+
+      res.render('vote.html', {
+          user : user,
+          poll_id: poll._id,
+          poll_name: poll.poll_name,
+          options: poll.options,
+          error_message: req.flash('error'),
+          success_message: req.flash('success')
+      });
+    });
+
   });
 
   app.get('/logout', function(req, res) {
@@ -182,6 +264,20 @@ var routes = function(app, flash) {
       });
     };
 
+  });
+
+  app.get('/delete/poll/:pollId', function(req, res) {
+
+    var pollId = req.params.pollId;
+    // find and remove poll from database; redirect back to dashboard
+    Poll.remove({ '_id': pollId }, function(err, poll) {
+      if (err) {
+        throw err;
+      };
+      req.flash('success', 'Poll was successfully deleted');
+      res.redirect('/dashboard');
+
+    });
   });
 
   app.get('/settings', isLoggedIn, function(req, res) {
