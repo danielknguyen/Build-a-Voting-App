@@ -10,8 +10,44 @@
   <div class="front-page-cover-banner">
     <h1>Dashboard</h1>
     <h3>Hello {{ user }}, what would you like to do today?</h3>
-    <a href="" class="btn btn-primary" name="new_polls">New Poll</a>
-    <a href="" class="btn btn-secondary" name="my_polls">My Polls</a>
+    <button id="newPollButton" class="btn btn-primary">New Poll</button>
+    <button id="myPollsButton" href="" class="btn btn-secondary">My Polls</button>
   </div>
+</div>
+
+<div class="newPollDiv">
+  <h2>Create New Poll</h2>
+  <form action="/dashboard" method="post" name="newPollForm">
+    <div class="form-group">
+      <label for="nameYourPoll">Name your poll</label>
+      <input type="text" class="form-control" name="nameYourPoll" placeholder="Which sport is the best?" required>
+    </div>
+    <div class="optionsDiv" class="form-group">
+      <label for="options">options</label>
+      <input type="text" class="form-control" name="options[]" placeholder="Wrestling" required>
+      <input type="text" class="form-control" name="options[]" placeholder="Brazilian Jiu-jitsu" required>
+    </div>
+    <br>
+    <div class="btn btn-secondary options-button">More Options</div>
+    <button type="submit" class="btn btn-success">Create</button>
+  </form>
+</div>
+
+<div class="myPollsDiv show">
+  <!-- display list of polls -->
+  {% if polls.length > 0 %}
+    {% for poll in polls %}
+      <div class="polls">
+        <a href="/polls/vote/{{ poll._id }}" class="pollTitleLink">
+          <div class="pollTitle">{{ poll.poll_name }}</div>
+        </a>
+        <div class="pollDeleteBtn">
+          <a href="/delete/poll/{{ poll._id }}" name="pollDelete" class="btn btn-sm btn-danger">Delete</a>
+        </div>
+      </div>
+    {% endfor %}
+  {% else %}
+    <p class="noPollsMessage">{{ user }}, you don't have any polls at this time</p>
+  {% endif %}
 </div>
 {% endblock %}
