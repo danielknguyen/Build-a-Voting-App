@@ -1,0 +1,29 @@
+{% extends "template.html" %}
+
+{% block header %}
+  <title>VoteMania:Dashboard/{{ user }}/Polls/</title>
+{% endblock %}
+
+{% block content %}
+
+<div class="votePoll">
+  <form action="/polls/vote/{{ poll_id }}" method="post" id="voteForm">
+    <h5>{{ poll_name }}</h5>
+    <div class="form-group">
+      <label for="select">I'd like to vote for...</label>
+      <br>
+      <select name="pollOptions" form="voteForm" id="voteList">
+        {% for option in options %}
+          <option value="{{ option }}">{{ option }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <div class="btn btn-secondary">
+      <i class="fa fa-facebook-square"></i>
+      Share on Facebook
+    </div>
+  </form>
+</div>
+
+{% endblock %}
