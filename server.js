@@ -35,7 +35,7 @@ var appConfig = function() {
     store: new MongoStore({
       url: process.env.MONGOLAB_URL,
       callback({
-        collection: 'session'
+        collection: 'session',
         ttl: 86400,
         autoRemove: 'native'
       })
