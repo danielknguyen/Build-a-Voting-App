@@ -14,4 +14,4 @@ Project that allows users to create, read, share and delete voting polls.
   <li>As an authenticated user, if I don't like the options on a poll, I can create a new option.</li>
 </ol>
 <br>
-<p>A <a href="https://www.freecodecamp.org/challenges/build-a-voting-app">freeCodeCamp/a> Back-end project</p>
+<p>A <a href="https://www.freecodecamp.org/challenges/build-a-voting-app">freeCodeCamp</a> Back-end project</p>
