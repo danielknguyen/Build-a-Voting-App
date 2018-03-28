@@ -6,7 +6,8 @@
     <link rel="stylesheet" href="/styles/styles.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Arvo|Lobster|Merriweather+Sans|Bree+Serif|Signika|Ubuntu|Noto+Serif|Fira+Sans" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript" src="/scripts/client.js"></script>
 
@@ -22,10 +23,10 @@
         <div class="dropdown">
           <div class="dropbtn"><i class="fa fa-user-circle"></i> {{ user }}</div>
           <div id="myDropdown" class="dropdown-content">
-            <a href="/dashboard">Dashboard</a>
-            <a href="/polls">Public Polls</a>
-            <a href="/settings">Settings</a>
-            <a href="/logout">Logout</a>
+            <a class="nav-link-btn" href="/dashboard">Dashboard</a>
+            <a class="nav-link-btn" href="/polls">Public Polls</a>
+            <a class="nav-link-btn" href="/settings">Settings</a>
+            <a class="nav-link-btn" href="/logout">Logout</a>
           </div>
         </div>
       </div>
@@ -37,16 +38,16 @@
         <div class="navigation-links">
           <ul>
             <li>
-              <a href="/polls">Public Polls</a>
+              <a class="nav-link-btn" href="/polls">Public Polls</a>
             </li>
             <li>
-              <a href="/register">Sign-up</a>
+              <a class="nav-link-btn" href="/register">Sign-up</a>
             </li>
             <li>
-              <a href="/login">Login</a>
+              <a class="nav-link-btn" href="/login">Login</a>
             </li>
             <li>
-              <a href="/">Home</a>
+              <a class="nav-link-btn" href="/">Home</a>
             </li>
           </ul>
         </div>

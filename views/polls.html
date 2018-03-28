@@ -9,8 +9,8 @@
   <!-- front page banner index-->
   <div class="front-page-cover">
     <div class="front-page-cover-banner">
-      <h1>VoteMania</h1>
-      <h3>
+      <h1 class="banner-title">VoteMania</h1>
+      <h3 class="banner-info">
         {% if not user %}
           Select a poll to see results and vote, or sign in to make a new poll.
         {% else %}
@@ -25,5 +25,19 @@
       {% endif %}
     </div>
   </div>
-
+  <!-- display list of public polls -->
+  <div class="publicPolls">
+    <!-- display list of polls -->
+    {% if polls.length > 0 %}
+      {% for poll in polls %}
+        <a href="/polls/vote/{{ poll._id }}" class="pollTitleLink">
+          <div class="polls">
+              <div class="pollTitle">{{ poll.poll_name }}</div>
+          </div>
+        </a>
+      {% endfor %}
+    {% else %}
+      <p class="noPollsMessage">There are no public polls at this time</p>
+    {% endif %}
+  </div>
 {% endblock %}

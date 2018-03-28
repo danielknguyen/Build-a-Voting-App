@@ -8,8 +8,8 @@
 <!-- dashboard-->
 <div class="front-page-cover">
   <div class="front-page-cover-banner">
-    <h1>Dashboard</h1>
-    <h3>Hello {{ user }}, what would you like to do today?</h3>
+    <h1 class="banner-title">Dashboard</h1>
+    <h3 class="banner-info">Hello {{ user }}, what would you like to do today?</h3>
     <button id="newPollButton" class="btn btn-primary">New Poll</button>
     <button id="myPollsButton" href="" class="btn btn-secondary">My Polls</button>
   </div>
@@ -20,12 +20,12 @@
   <form action="/dashboard" method="post" name="newPollForm">
     <div class="form-group">
       <label for="nameYourPoll">Name your poll</label>
-      <input type="text" class="form-control" name="nameYourPoll" placeholder="Which sport is the best?" required>
+      <input type="text" class="form-control" name="nameYourPoll" placeholder="Which sport is the best?" required maxlength="50">
     </div>
     <div class="optionsDiv" class="form-group">
       <label for="options">options</label>
-      <input type="text" class="form-control" name="options[]" placeholder="Wrestling" required>
-      <input type="text" class="form-control" name="options[]" placeholder="Brazilian Jiu-jitsu" required>
+      <input type="text" class="form-control" name="options[]" placeholder="Wrestling" required maxlength="50">
+      <input type="text" class="form-control" name="options[]" placeholder="Brazilian Jiu-jitsu" required maxlength="50">
     </div>
     <br>
     <div class="btn btn-secondary options-button">More Options</div>

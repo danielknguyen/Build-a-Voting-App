@@ -8,7 +8,7 @@
 
 <div class="votePoll">
   <form action="/polls/vote/{{ poll_id }}" method="post" id="voteForm">
-    <h5>{{ poll_name }}</h5>
+    <h5 id="poll_name" value="{{ poll_id }}">{{ poll_name }}</h5>
     <div class="form-group">
       <label for="select">I'd like to vote for...</label>
       <br>
@@ -19,11 +19,13 @@
       </select>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
-    <div class="btn btn-secondary">
+    <div id="shareBtn" class="btn btn-secondary">
       <i class="fa fa-facebook-square"></i>
-      Share on Facebook
+      Share
     </div>
   </form>
+  <div class="chartDiv" style="width: 400px">
+    <canvas id="myChart" width="400" height="400"></canvas>
+  </div>
 </div>
-
 {% endblock %}
