@@ -20,6 +20,7 @@ var pollSchema = new Schema({
     trim: true
   },
   options: [],
+  data: [],
   created_at: {
     type: Date,
     default: Date.now,
