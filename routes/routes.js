@@ -11,6 +11,7 @@ var routes = function(app, flash) {
     // check local object
     // console.log(res.locals)
     var user;
+    var polls;
 
     if (req.session.user) {
       user = {
@@ -25,12 +26,22 @@ var routes = function(app, flash) {
     var user;
 
     if (req.session.user) {
-      user = {
-        user: titleCase(req.session.user.fname)
-      }
+      user = titleCase(req.session.user.fname);
     };
 
-    res.render('polls.html', user=user)
+    Poll.find({}, function(err, polls) {
+      if (err) {
+        throw err;
+      } else if (polls) {
+        polls = polls;
+      } else {
+        polls = undefined;
+      };
+      res.render('polls.html', {
+        user: user,
+        polls: polls
+      });
+    });
   });
 
   app.get('/register', function(req, res) {
@@ -191,11 +202,23 @@ var routes = function(app, flash) {
     // query form options in the form on an array
     var formOptions = req.body.options;
     var options = [];
-
+    var data = [];
     // loop through form options and make all options lowercase
     // push new values to options array
+    // set vote value of each option to 0; push to data array
     for (var i = 0; i < formOptions.length; i++) {
-      options.push(formOptions[i].toLowerCase());
+      var tempName = formOptions[i].toLowerCase();
+      var optionData;
+
+      options.push(tempName);
+
+      // set value for each option
+      optionData = {
+        option: tempName,
+        totalVotes: 0
+      }
+      // e.g [ { blue: { totalVotes: 0 } } ]
+      data.push(optionData);
     };
 
     // check if poll already exists in db
@@ -212,6 +235,7 @@ var routes = function(app, flash) {
         newPoll.user_id = req.session.user.userId;
         newPoll.poll_name = pollName;
         newPoll.options = options;
+        newPoll.data = data;
         newPoll.created_at = Date();
 
         newPoll.save(function(err, poll) {
@@ -245,11 +269,62 @@ var routes = function(app, flash) {
           poll_id: poll._id,
           poll_name: poll.poll_name,
           options: poll.options,
+          data: poll.data,
           error_message: req.flash('error'),
           success_message: req.flash('success')
       });
     });
 
+  });
+
+  app.post('/polls/vote/:pollId', function(req, res) {
+    var newPoll = new Poll();
+    var user = (req.session.user) ? titleCase(req.session.user.fname) : undefined;
+    var pollId = req.params.pollId;
+    var optionSelected = req.body.pollOptions;
+    // res.send(option);
+
+    Poll.findById({ "_id": pollId }, function(err, doc) {
+      if (err) throw err;
+      var docData = doc.data;
+      var updateDoc;
+      for (var i = 0; i < docData.length; i++) {
+        if (docData[i].option === optionSelected) {
+
+          docData[i].totalVotes++;
+          // lets mongoose driver know that the value of a mixed type has changed
+          doc.markModified('data');
+          doc.save(function(err, updatedDoc) {
+            if (err) throw err;
+            console.log("this is the update" + updatedDoc);
+          });
+          break;
+        };
+      };
+
+      res.render('vote.html', {
+          user : user,
+          poll_id: doc._id,
+          poll_name: doc.poll_name,
+          options: doc.options,
+          data: doc.data,
+      });
+    });
+
+
+  });
+
+  app.get('/chartjs/polls/api/data/:pollId', function(req, res) {
+    var pollId = req.params.pollId;
+    Poll.findOne({ "_id": pollId }, function(err, polls) {
+      if (err) {
+        throw err;
+      } else if (!polls) {
+        res.send('Unable to retrieve polls from database' + poll);
+      } else {
+        res.send(polls);
+      }
+    });
   });
 
   app.get('/logout', function(req, res) {
@@ -368,4 +443,5 @@ var userSessionObject = function(name, id) {
     userId: id // newUser._id
   };
 };
+
 module.exports = routes;
