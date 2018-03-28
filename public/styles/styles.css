@@ -3,11 +3,30 @@
 }
 .navigation-logo {
   float: left;
-  padding: 5px 15px;
+  padding: 0 15px;
 }
 .navbar-brand-span-title {
-  font-size: 1.5em;
-  font-family: 'Anton', sans-serif;
+  font-size: 2em;
+  font-family: 'Lobster', cursive;
+}
+.banner-title {
+  font-family: 'Lobster', cursive;
+}
+.banner-info {
+  font-family: 'Merriweather Sans', sans-serif;
+}
+.nav-link-btn {
+  font-family: 'Ubuntu', sans-serif;
+}
+.info-row-info {
+  font-family: 'Noto Serif', serif;
+}
+.info-row-title {
+  font-family: 'Arvo', serif;
+  font-weight: bold;
+}
+label {
+  font-family: 'Noto Serif', serif;
 }
 .navigation-links {
   float: right;
@@ -44,6 +63,7 @@
 }
 .front-page-cover {
   background-color: #4ECDC4;
+  display: absolute;
 }
 .front-page-cover-banner {
   width: 50%;
@@ -95,6 +115,8 @@ form[name='settingsForm'] {
 .pollTitle {
   display: inline-block;
   width: 60%;
+  font-family: 'Arvo', serif;
+  font-size: 18px;
 }
 .pollDeleteBtn {
   display: inline-block;
@@ -138,20 +160,25 @@ form[name='settingsForm'] {
   text-decoration: none;
 }
 .votePoll {
+  width: 100%;
+  padding: 50px;
   background-color: #f1f1f1;
-  height: 500px;
+  display: flex;
+  position: absolute;
 }
 #voteForm {
   width: 350px;
   height: 200px;
+  margin: 0 auto;
   padding: 20px;
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
-  margin: 0 50px;
+  text-align: center;
+  border: 1px solid #BDC3C7;
+}
+.chartDiv {
+  margin: 0 auto;
 }
 #voteList, #voteList option {
-  width: 280px;
+  width: 250px;
   height: 40px;
 }
 .noPollsMessage {
@@ -159,6 +186,12 @@ form[name='settingsForm'] {
   color: red;
   background-color: #f1f1f1;
   padding: 10px;
+}
+#poll_name {
+  font-family: 'Bree Serif', serif;
+}
+.flashMessage {
+  font-family: 'Fira Sans', sans-serif;
 }
 .show {
   display: block;
