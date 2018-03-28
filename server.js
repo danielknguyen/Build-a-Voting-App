@@ -9,7 +9,9 @@ var express = require('express'),
     flash = require('connect-flash'),
     morgan = require('morgan'),
     cookieParser = require('cookie-parser'),
-    session = require('express-session');
+    mongoose = require('mongoose'),
+    session = require('express-session'),
+    MongoStore = require('connect-mongo')(session);
 
 // setup app configuration
 var appConfig = function() {
@@ -28,12 +30,17 @@ var appConfig = function() {
 
   app.use(session({
     secret: process.env.SESSION_KEY,
-    resave: false,
+    resave: true,
     saveUninitialized: false,
-    cookie: {
-      secure: false,
-      maxAge: 300000
-     }
+    store: new MongoStore({
+      url: process.env.MONGOLAB_URL,
+      ttl: 86400,
+      autoRemove: 'native'
+    })
+    // cookie: {
+    //   secure: false,
+    //   maxAge: 30000
+    //  }
   }));
 
   app.use(flash()); // use connect-flash for flash messages stored in session
