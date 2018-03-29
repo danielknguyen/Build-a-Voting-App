@@ -28,14 +28,11 @@
   }
   #voteForm {
     width: 375px;
-    height: 270px;
-  }
-  #myChart {
-    width: 375px;
-    height: 375px;
+    height: 225px;
   }
   .chartDiv {
-    width: 375px;
+    margin-top: 50px;
+    width: 400px;
   }
 }
 @media only screen and (min-width: 768px) and (max-width: 991px) {
@@ -43,12 +40,9 @@
     width: 300px;
     height: 200px;
   }
-  #myChart {
-    width: 350px;
-    height: 350px;
-  }
   .chartDiv {
-    width: 350px;
+    margin-top: 50px;
+    width: 400px;
   }
 }
 @media only screen and (min-width: 992px) and (max-width: 1999px) {
