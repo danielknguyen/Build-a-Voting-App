@@ -16,7 +16,7 @@
     width: 100%;
   }
   .polls, .pollTitle {
-    width: 100%;
+    width: 90%;
   }
   .pollTitle {
     width: 80%;
@@ -37,5 +37,8 @@
   .chartDiv {
     margin-top: 50px;
     width: 400px;
+  }
+  .newPollDiv {
+    width: 85%;
   }
 }

@@ -18,6 +18,9 @@
   .polls, .pollTitle {
     width: 80%;
   }
+  .pollTitle {
+    width: 80%;
+  }
   form[name='settingsForm'] {
     width: 80%;
     margin: 0 auto;
