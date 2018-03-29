@@ -13,6 +13,9 @@ var express = require('express'),
     session = require('express-session'),
     MongoStore = require('connect-mongo')(session);
 
+// load database
+var db = require('./libs/db.js');
+
 // setup app configuration
 var appConfig = function() {
   // serve static files, assets, css, javascript in public directory
@@ -33,16 +36,16 @@ var appConfig = function() {
     resave: true,
     saveUninitialized: false,
     store: new MongoStore({
-      url: process.env.MONGOLAB_URL,
-      callback({
-        ttl: 86400,
-        autoRemove: 'native'
-      })
-    })
-    // cookie: {
-    //   secure: false,
-    //   maxAge: 30000
-    //  }
+      mongooseConnection: db.connection,
+      // 1 day in seconds
+      ttl: 86400,
+      autoRemove: 'native'
+    }),
+    cookie: {
+      secure: false,
+      // 5min in milli
+      maxAge: 300000
+     }
   }));
 
   app.use(flash()); // use connect-flash for flash messages stored in session
