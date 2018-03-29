@@ -36,7 +36,7 @@ $(document).ready(function() {
   // button to add input field in poll options
   $('.options-button').on('click', function() {
 
-    var html = '<input type="text" class="form-control" name="options[]" placeholder="" required> maxlength="50"';
+    var html = '<input type="text" class="form-control" name="options[]" placeholder="" maxlength="50" required>';
     var last = $('.optionsDiv').children().last().val();
     console.log(last);
 
