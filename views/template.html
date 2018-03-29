@@ -4,6 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/styles/styles.css">
+    <link rel="stylesheet" href="/styles/responsive.css">
+    <link rel="stylesheet" href="/styles/mobile.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Arvo|Lobster|Merriweather+Sans|Bree+Serif|Signika|Ubuntu|Noto+Serif|Fira+Sans" rel="stylesheet">
@@ -16,13 +18,13 @@
   <body>
     <!-- navigation bar -->
     {% if user %}
-      <div class="navigation">
+      <div class="navigation dropNav">
         <div class="navigation-logo">
           <a class="navbar-brand-span-title" href="/">VoteMania</a>
         </div>
         <div class="dropdown">
           <div class="dropbtn"><i class="fa fa-user-circle"></i> {{ user }}</div>
-          <div id="myDropdown" class="dropdown-content">
+          <div id="authNav" class="dropdown-content">
             <a class="nav-link-btn" href="/dashboard">Dashboard</a>
             <a class="nav-link-btn" href="/polls">Public Polls</a>
             <a class="nav-link-btn" href="/settings">Settings</a>
@@ -30,8 +32,29 @@
           </div>
         </div>
       </div>
+      <div class="navigation regNav">
+        <div class="navigation-logo">
+          <a class="navbar-brand-span-title" href="/">VoteMania</a>
+        </div>
+        <div class="navigation-links">
+          <ul>
+            <li>
+              <a class="nav-link-btn" href="/dashboard">Dashboard</a>
+            </li>
+            <li>
+              <a class="nav-link-btn" href="/polls">Public Polls</a>
+            </li>
+            <li>
+              <a class="nav-link-btn" href="/settings"><i class="fa fa-cog"></i></a>
+            </li>
+            <li>
+              <a class="nav-link-btn" href="/logout">Logout</a>
+            </li>
+          </ul>
+        </div>
+      </div>
     {% else %}
-      <div class="navigation">
+      <div class="navigation regNav">
         <div class="navigation-logo">
           <a class="navbar-brand-span-title" href="/">VoteMania</a>
         </div>
@@ -50,6 +73,21 @@
               <a class="nav-link-btn" href="/">Home</a>
             </li>
           </ul>
+        </div>
+      </div>
+      <!-- drop navigation -->
+      <div class="navigation dropNav">
+        <div class="navigation-logo">
+          <a class="navbar-brand-span-title" href="/">VoteMania</a>
+        </div>
+        <div class="dropdown">
+          <div class="dropbtn"><i class="fa fa-user-circle"></i> Not logged in</div>
+          <div id="notAuthNav" class="dropdown-content">
+            <a class="nav-link-btn" href="/">Home</a>
+            <a class="nav-link-btn" href="/login">Login</a>
+            <a class="nav-link-btn" href="/register">Sign-up</a>
+            <a class="nav-link-btn" href="/polls">Public Poll</a>
+          </div>
         </div>
       </div>
     {% endif %}

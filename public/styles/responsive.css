@@ -1,0 +1,56 @@
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+  .dropNav {
+    display: block;
+  }
+  .regNav {
+    display: none;
+  }
+  .front-page-cover-banner {
+    width: 80%;
+  }
+  .info-row {
+    display: block;
+  }
+  .info-row-column {
+    display: block;
+    width: 100%;
+  }
+  .polls, .pollTitle {
+    width: 80%;
+  }
+  form[name='settingsForm'] {
+    width: 80%;
+    margin: 0 auto;
+  }
+  .votePoll {
+    width: 100%;
+    display: block;
+  }
+  #voteForm {
+    width: 375px;
+    height: 270px;
+  }
+  #myChart {
+    width: 375px;
+    height: 375px;
+  }
+  .chartDiv {
+    width: 375px;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  #voteForm {
+    width: 300px;
+    height: 200px;
+  }
+  #myChart {
+    width: 350px;
+    height: 350px;
+  }
+  .chartDiv {
+    width: 350px;
+  }
+}
+@media only screen and (min-width: 992px) and (max-width: 1999px) {
+
+}

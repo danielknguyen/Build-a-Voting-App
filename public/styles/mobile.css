@@ -1,0 +1,44 @@
+@media only screen and (min-width: 320px) and (max-width: 479px) {
+  .dropNav {
+    display: block;
+  }
+  .regNav {
+    display: none;
+  }
+  .front-page-cover-banner {
+    width: 100%;
+  }
+  .info-row {
+    display: block;
+  }
+  .info-row-column {
+    display: block;
+    width: 100%;
+  }
+  .polls, .pollTitle {
+    width: 100%;
+  }
+  .pollTitle {
+    width: 80%;
+  }
+  form[name='settingsForm'] {
+    width: 80%;
+    margin: 0 auto;
+  }
+  .votePoll {
+    width: 100%;
+    padding: 50px 0;
+    display: block;
+  }
+  #voteForm {
+    width: 300px;
+    height: 200px;
+  }
+  #myChart {
+    width: 300px;
+    height: 300px;
+  }
+  .chartDiv {
+    width: 300px;
+  }
+}

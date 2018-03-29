@@ -12,13 +12,25 @@ $(document).ready(function() {
   // if dropdown div is clicked display links
   $('.dropdown').on('click', function() {
 
-    var myDropDown = document.getElementById('myDropdown');
+    var authNav = document.getElementById('authNav');
+    var notAuthNav = document.getElementById('notAuthNav')
 
-    if (myDropDown.classList.contains('show')) {
-      $('#myDropdown').removeClass('show');
-    } else {
-      $('#myDropdown').addClass('show');
-    }
+    if (notAuthNav) {
+      if (notAuthNav.classList.contains('show')) {
+        $('#notAuthNav').removeClass('show');
+      } else {
+        $('#notAuthNav').addClass('show');
+      }
+    };
+
+    if (authNav) {
+      if (authNav.classList.contains('show')) {
+        $('#authNav').removeClass('show');
+      } else {
+        $('#authNav').addClass('show');
+      }
+    };
+
   });
 
   $('#newPollButton').on('click',function() {
