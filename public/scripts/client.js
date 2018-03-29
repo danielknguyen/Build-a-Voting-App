@@ -128,9 +128,11 @@ $(document).ready(function() {
 
     $('#shareBtn').on('click', function() {
 
+      var url = $('#shareBtn').attr('value');
+
       FB.ui({
         method: 'share',
-        href: 'https://developers.facebook.com/docs/',
+        href: url,
       }, function(response) {
 
       });
