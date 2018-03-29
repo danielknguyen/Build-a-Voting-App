@@ -55,7 +55,7 @@ $(document).ready(function() {
   if (pollIdVal !== undefined) {
 
     $.ajax({
-      url: "http://localhost:27017/chartjs/polls/api/data/" + pollIdVal,
+      url: "https://arcane-stream-17570.herokuapp.com/chartjs/polls/api/data/" + pollIdVal,
       type: "GET",
       success: function(data) {
         // console.log(data.poll_name);
