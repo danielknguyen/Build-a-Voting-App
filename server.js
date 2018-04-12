@@ -15,7 +15,7 @@ var express = require('express'),
 
 // load database
 var db = require('./libs/db.js');
-
+var User = require('./models/userSchema.js');
 // setup app configuration
 var appConfig = function() {
   // serve static files, assets, css, javascript in public directory
@@ -55,6 +55,25 @@ var appConfig = function() {
     res.locals.success = req.flash('success');
     res.locals.error = req.flash('error');
     next();
+  });
+
+  app.use(function(req, res, next) {
+    if (req.session.user) {
+      User.findOne({ '_id': req.session.user.userId }, function(err, user) {
+        console.log(req.session.user);
+        if (user) {
+          req.session.user = {
+            fname: user.fname, // newUser.fname,
+            userId: user._id // newUser._id
+          };
+        } else {
+          req.session.user = undefined;
+        };
+        next();
+      });
+    } else {
+      next();
+    };
   });
 
 }();

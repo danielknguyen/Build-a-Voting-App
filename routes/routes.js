@@ -132,7 +132,7 @@ var routes = function(app, flash) {
     var newUser = new User();
 
     // console.log('this is the form details ' + util.inspect(req.body));
-    var email = req.body.email;
+    var email = req.body.email.toLowerCase();
     var password = req.body.password;
 
     // find email in db.
