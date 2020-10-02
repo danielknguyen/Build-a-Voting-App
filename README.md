@@ -6,6 +6,7 @@ Project that allows users to create, read, share and delete voting polls.
 <ol>
   <li>As an authenticated user, I can keep my polls and come back later to access them.</li>
   <li>As an authenticated user, I can share my polls with my friends.</li>
+  <li>As an authenticated user, I can post my feed over facebook.</li>
   <li>As an authenticated user, I can see the aggregate results of my polls.</li>
   <li>As an authenticated user, I can delete polls that I decide I don't want anymore.</li>
   <li>As an authenticated user, I can create a poll with any number of possible items.</li>
